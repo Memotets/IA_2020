@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir;
+package ir.Herramientas;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -19,7 +19,8 @@ public class JFrameImage extends JFrame{
    
     public JFrameImage (Image imagenOrigen){
         imagen = imagenOrigen;
-        this.setSize(imagen.getWidth(this),imagen.getHeight(this));
+        
+        this.setSize(imagen.getWidth(null),imagen.getHeight(null));
         JLabel label = new JLabel ();
         label.setIcon(new ImageIcon(imagenOrigen));
         this.add(label);
@@ -28,7 +29,7 @@ public class JFrameImage extends JFrame{
         
        this.setDefaultCloseOperation(JFrameImage.DISPOSE_ON_CLOSE);
     }
-
+    
     public Image getImagen() {
         return imagen;
     }

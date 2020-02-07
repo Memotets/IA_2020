@@ -5,12 +5,12 @@
  */
 package ir;
 
-import java.awt.Color;
+import ir.Herramientas.ImageManager;
+//import ir.Herramientas.DrawOnBuffered;
+import ir.Herramientas.JFrameImage;
+import ir.SegmentoRGB.Histogramas;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 
 /**
  *
@@ -24,14 +24,10 @@ public class Main {
     public static void main(String[] args) {
         Image imagen = ImageManager.openImage();
         JFrameImage wop = new JFrameImage(imagen);
-        BufferedImage ni = ImageManager.toBufferedImage(imagen);
-        Color verde  = new Color(57,255,20);
-        for (int i=0; i<100;i++){
-            for (int j =0; j <100;j++){
-                ni.setRGB(i,j, verde.getRGB());
-            }
-        }
-        JFrameImage wop2 = new JFrameImage(ImageManager.toBufferedImage(ni));
+        Histogramas prueba= new Histogramas(imagen);
+//        DrawOnBuffered.Circulo(imagen,100);
+//        
+         
     }
     
 }
