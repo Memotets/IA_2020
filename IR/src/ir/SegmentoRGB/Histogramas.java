@@ -25,8 +25,11 @@ public class Histogramas {
         this.Grey = new double[256];
         
         this.RecolectarColores(in);
-        this.Graph();
-        this.GraphGrey();
+//        this.Graph();
+//        this.GraphGrey();
+//        this.GraphRed();
+//        this.GraphGreen();
+//        this.GraphBlue();
     }
     
     private void RecolectarColores( Image in){
@@ -43,7 +46,7 @@ public class Histogramas {
         }
     }
     
-    private void Graph(){
+    public void Graph(){
            Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(R, "Rojo");
            graph.agregarSerie(B, "Azul");
@@ -58,7 +61,7 @@ public class Histogramas {
 //           plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
     }
     
-    private void GraphGrey(){
+    public void GraphGrey(){
            Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de grises");
            graph.agregarSerie(Grey, "Gris");
            graph.crearGrafica();
@@ -67,7 +70,7 @@ public class Histogramas {
            graph.muestraGrafica();
     }
     
-    private void GraphRed(){
+    public void GraphRed(){
            Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(R, "Rojo");
            graph.crearGrafica();
@@ -75,7 +78,7 @@ public class Histogramas {
            plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
            graph.muestraGrafica();
     }
-    private void GraphBlue(){
+    public void GraphBlue(){
            Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(B, "Azul");
            graph.crearGrafica();
@@ -83,7 +86,7 @@ public class Histogramas {
            plot.getRenderer().setSeriesPaint(0, new Color(Color.BLUE.getRGB()));
            graph.muestraGrafica();
     }
-    private void GraphGreen(){
+    public void GraphGreen(){
            Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(G, "Verde");
            graph.crearGrafica();
