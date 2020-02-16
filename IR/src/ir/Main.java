@@ -25,18 +25,11 @@ public class Main {
     public static void main(String[] args) {
         Image imagen = ImageManager.openImage();
         JFrameImage wop   = new JFrameImage(imagen);
-        JFrameImage wop2 = new JFrameImage( FiltrosEspaciales.generarGris(imagen));
-        JFrameImage wop3 = new JFrameImage( FiltrosEspaciales.generarNegativo(imagen));
-        Histogramas prueba  = new Histogramas(wop.getImagen());
-        Histogramas prueba2= new Histogramas(wop2.getImagen());
-        Histogramas prueba3= new Histogramas(wop3.getImagen());
-        prueba.Graph();
-        prueba.GraphGrey();
-        prueba2.Graph();
-        prueba3.Graph();
-//        DrawOnBuffered.Circulo(imagen,100);
-//        
-         
+        Histogramas nuevo = new Histogramas(imagen);
+        nuevo.Graph();
+        JFrameImage wop3   = new JFrameImage(FiltrosEspaciales.fondol(imagen, 30,220));
+        nuevo = new Histogramas(wop3.getImagen());
+        nuevo.Graph(); 
     }
     
 }
