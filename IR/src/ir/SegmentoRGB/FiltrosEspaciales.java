@@ -31,10 +31,7 @@ public class FiltrosEspaciales {
                 color = new Color(bi.getRGB(i,j));
                 int prom = (color.getRed()+color.getGreen()+color.getBlue())/3;
                 
-                if (prom>umbral1){
-                    bi.setRGB(i, j, Color.WHITE.getRGB());
-                }
-                if (prom <umbral2){
+                if (prom>umbral1 || prom <umbral2){
                     bi.setRGB(i, j, Color.WHITE.getRGB());
                 }
             }
