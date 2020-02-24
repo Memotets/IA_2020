@@ -17,6 +17,15 @@ import org.jfree.chart.plot.XYPlot;
 public class Histogramas {
 
     double R[],G[],B[],Grey[];
+    Grafica graph;
+
+    public Grafica getGraph() {
+        return graph;
+    }
+
+    public void setGraph(Grafica graph) {
+        this.graph = graph;
+    }
 
     public Histogramas(Image in) {
         this.R = new double[256];
@@ -25,11 +34,6 @@ public class Histogramas {
         this.Grey = new double[256];
         
         this.RecolectarColores(in);
-//        this.Graph();
-//        this.GraphGrey();
-//        this.GraphRed();
-//        this.GraphGreen();
-//        this.GraphBlue();
     }
     
     private void RecolectarColores( Image in){
@@ -46,8 +50,8 @@ public class Histogramas {
         }
     }
     
-    public void Graph(){
-           Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+    public void Graph(boolean grafico){
+           this.graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(R, "Rojo");
            graph.agregarSerie(B, "Azul");
            graph.agregarSerie(G, "Verde");
@@ -57,21 +61,21 @@ public class Histogramas {
            plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
            plot.getRenderer().setSeriesPaint(1, new Color(Color.BLUE.getRGB()));
            plot.getRenderer().setSeriesPaint(2, new Color(Color.GREEN.getRGB()));
-           graph.muestraGrafica();
-//           plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
+           if (grafico) graph.muestraGrafica();
     }
     
+    
     public void GraphGrey(){
-           Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de grises");
+           this.graph = new Grafica("Magnitud","Frecuencia","Histograma de grises");
            graph.agregarSerie(Grey, "Gris");
            graph.crearGrafica();
            XYPlot plot = graph.getGrafica().getXYPlot();
            plot.getRenderer().setSeriesPaint(0, new Color(Color.DARK_GRAY.getRGB()));
-           graph.muestraGrafica();
+          graph.muestraGrafica();
     }
     
     public void GraphRed(){
-           Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+           this.graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(R, "Rojo");
            graph.crearGrafica();
            XYPlot plot = graph.getGrafica().getXYPlot();
@@ -79,7 +83,7 @@ public class Histogramas {
            graph.muestraGrafica();
     }
     public void GraphBlue(){
-           Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+           this.graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(B, "Azul");
            graph.crearGrafica();
            XYPlot plot = graph.getGrafica().getXYPlot();
@@ -87,7 +91,7 @@ public class Histogramas {
            graph.muestraGrafica();
     }
     public void GraphGreen(){
-           Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+           this.graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
            graph.agregarSerie(G, "Verde");
            graph.crearGrafica();
            XYPlot plot = graph.getGrafica().getXYPlot();

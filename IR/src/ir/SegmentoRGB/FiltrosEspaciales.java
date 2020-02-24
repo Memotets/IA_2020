@@ -15,6 +15,38 @@ import java.awt.image.BufferedImage;
  * @author memotets89
  */
 public class FiltrosEspaciales {
+    public static Image Contraste(Image io, int min, int max){
+          if (max < min ){
+               int aux = max;
+               max=min;
+               min=aux;
+          }
+
+        BufferedImage bi = ImageManager.toBufferedImage(io);
+        Color color;
+         for (int i=0; i< bi.getWidth(); i++ ){
+            for (int j = 0 ; j<bi.getHeight(); j++){
+                color = new Color(bi.getRGB(i,j));
+                int r  = color.getRed();
+                int g = color.getGreen();
+                int b = color.getBlue();
+                if (max!=min){
+                    int nr = val((int) ((255/(max-min))*(r-min)));
+                    int ng = val((int) ((255/(max-min))*(g-min)));
+                    int nb = val((int) ((255/(max-min))*(b-min)));
+
+                    bi.setRGB(i, j, new Color(nr,ng,nb).getRGB());
+                }else{
+                    int nr = val((int) ((255)*(r-min)));
+                    int ng = val((int) ((255)*(g-min)));
+                    int nb = val((int) ((255)*(b-min)));
+
+                    bi.setRGB(i, j, new Color(nr,ng,nb).getRGB());
+                }
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
     public static Image fondol(Image io, int umbral1, int umbral2){
           //en caso de que tenga un mal orden los umbrales
           if (umbral1 < umbral2 ){
