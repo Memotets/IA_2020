@@ -31,7 +31,7 @@ public class SliderLisener implements ChangeListener{
     public void stateChanged(ChangeEvent ce) {
         int un1 = this.frame.getU1().getValue();
         int un2 = this.frame.getU2().getValue();
-        Image res = FiltrosEspaciales.fondol(this.frame.getImg(),un1, un2);
+        Image res = FiltrosEspaciales.Contraste(this.frame.getImg(),un1, un2);
         
         CambiarChart(res);
         
