@@ -147,8 +147,11 @@ public class Histogramas {
     public double[] getHBlue(){
         return this.B;
     }
-    public double[] getGreen(){
+    public double[] getHGreen(){
         return this.G;
+    }
+    public double[] getGrey(){
+        return this.Grey;
     }
     public int getMinR(){
         return this.minR;

@@ -6,6 +6,8 @@
 package ir.SegmentoRGB;
 
 import ir.Herramientas.ImageManager;
+import ir.Herramientas.JFrameImage;
+import static ir.SegmentoRGB.UmbralizacionAutomatica.metodoIterativo;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -15,6 +17,60 @@ import java.awt.image.BufferedImage;
  * @author memotets89
  */
 public class FiltrosEspaciales {
+
+    public static Image toBin(Image io, int umbral1, int umbral2){
+        
+        if (umbral1 < umbral2 ){
+             int aux = umbral1;
+             umbral1=umbral2;
+             umbral2=aux;
+        }
+          
+        Image gris = FiltrosEspaciales.generarGris(io);
+        BufferedImage bi = ImageManager.toBufferedImage(gris);
+        Color color;
+        for (int i=0; i< bi.getWidth(); i++ ){
+            for (int j = 0 ; j<bi.getHeight(); j++){
+                color = new Color(bi.getRGB(i,j));
+                if (color.getBlue()>umbral1 || color.getBlue() <umbral2)
+                    bi.setRGB(i, j, Color.WHITE.getRGB());
+                else
+                    bi.setRGB(i, j, Color.BLACK.getRGB());
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
+    public static Image toBin(Image io){
+        Image gris = FiltrosEspaciales.generarGris(io);
+        int umbral1 = metodoIterativo(new Histogramas(gris).Grey);
+        BufferedImage bi = ImageManager.toBufferedImage(gris);
+        Color color;
+        for (int i=0; i< bi.getWidth(); i++ ){
+            for (int j = 0 ; j<bi.getHeight(); j++){
+                color = new Color(bi.getRGB(i,j));
+                if (color.getBlue()<umbral1 )
+                    bi.setRGB(i, j, Color.WHITE.getRGB());
+                else
+                    bi.setRGB(i, j, Color.BLACK.getRGB());
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
+    public static Image toBin(Image io, int umbral1){
+        Image gris = FiltrosEspaciales.generarGris(io);
+        BufferedImage bi = ImageManager.toBufferedImage(gris);
+        Color color;
+        for (int i=0; i< bi.getWidth(); i++ ){
+            for (int j = 0 ; j<bi.getHeight(); j++){
+                color = new Color(bi.getRGB(i,j));
+                if (color.getBlue()<umbral1 )
+                    bi.setRGB(i, j, Color.WHITE.getRGB());
+                else
+                    bi.setRGB(i, j, Color.BLACK.getRGB());
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
     public static Image Contraste(Image io, int min, int max){
           if (max < min ){
                int aux = max;
@@ -47,17 +103,16 @@ public class FiltrosEspaciales {
         }
         return ImageManager.toImage(bi);
     }
-    
-        public static Image Contraste(Histogramas h, Image imagen){
+    public static Image Contraste(Histogramas h, Image imagen){
 
         BufferedImage bi = ImageManager.toBufferedImage(imagen);
         Color color;
         for(int x=0; x<bi.getWidth();x++)
             for(int y=0; y<bi.getHeight();y++){
             color = new Color(bi.getRGB(x, y));
-            int r = (color.getRed()-h.getMinR())*(255/h.getMaxR()-h.getMinR());
-            int g = (color.getGreen()-h.getMinG())*(255/h.getMaxG()-h.getMinG());
-            int b = (color.getBlue()-h.getMinB())*(255/h.getMaxB()-h.getMinB());
+            int r = ((color.getRed()-h.getMinR())*255)/(h.getMaxR()-h.getMinR());
+            int g = ((color.getGreen()-h.getMinG())*255)/(h.getMaxG()-h.getMinG());
+            int b = ((color.getBlue()-h.getMinB())*255)/(h.getMaxB()-h.getMinB());
              color = new Color(val(r),
              val(g),
              val(b));
@@ -65,8 +120,6 @@ public class FiltrosEspaciales {
         }
         return ImageManager.toImage(bi);
     }
-
-        
     public static Image Ln(Image io){
         BufferedImage bi = ImageManager.toBufferedImage(io);
         Color color;
@@ -86,8 +139,7 @@ public class FiltrosEspaciales {
         }            
             return ImageManager.toImage(bi);
     }
-    
-        public static Image LnAlpha(Image io,int x){
+    public static Image LnAlpha(Image io,int x){
         Image a = FiltrosEspaciales.generarLuz(io, x);
         BufferedImage bi = ImageManager.toBufferedImage(a);
         Color color;
@@ -107,7 +159,6 @@ public class FiltrosEspaciales {
         }            
             return ImageManager.toImage(bi);
     }
-    
     public static Image Xp(Image io, double z){
         BufferedImage bi = ImageManager.toBufferedImage(io);
         Color color;
@@ -127,7 +178,6 @@ public class FiltrosEspaciales {
         }            
             return ImageManager.toImage(bi);
     }
-    
     public static Image fondol(Image io, int umbral1, int umbral2){
           //en caso de que tenga un mal orden los umbrales
           if (umbral1 < umbral2 ){
@@ -222,11 +272,9 @@ public class FiltrosEspaciales {
     private static int Glog(int r) {
         return  (int) ((255*loTao(1+r))/ loTao(256));
     }
-    private static double loTao(int x)
-    {
+    private static double loTao(int x){
         return (int) (Math.log(x) / Math.log(1.12358) + 1e-10);
     }
-
     private static int fxp(double z,int r) {
         return (int) (Math.pow((1+z),r)/z);
     }

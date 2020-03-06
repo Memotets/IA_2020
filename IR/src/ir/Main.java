@@ -6,12 +6,10 @@
 package ir;
 
 import ir.Herramientas.ImageManager;
-//import ir.Herramientas.DrawOnBuffered;
 import ir.Herramientas.JFrameImage;
-import ir.Herramientas.JFrameSegmentacion;
 import ir.SegmentoRGB.FiltrosEspaciales;
-import static ir.SegmentoRGB.FiltrosEspaciales.Contraste;
 import ir.SegmentoRGB.Histogramas;
+import ir.SegmentoRGB.UmbralizacionAutomatica;
 import java.awt.Image;
 
 
@@ -26,16 +24,18 @@ public class Main {
      */
     public static void main(String[] args) {
         Image imagen = ImageManager.openImage();
-        JFrameImage wop= new JFrameImage(imagen);
-        Histogramas ha = new Histogramas(wop.getImagen());
-        ha.Graph(true);
-//        JFrameImage wop2 = new JFrameImage(FiltrosEspaciales.Contraste(ha, imagen));
-//        ha = new Histogramas(wop2.getImagen());
-//        ha.Graph(true);
-        JFrameImage wop3 = new JFrameImage(FiltrosEspaciales.LnAlpha(imagen,-90));
-        ha = new Histogramas(wop3.getImagen());
-        ha.Graph(true);
-      // JFrameSegmentacion frame = new JFrameSegmentacion("wp",imagen);
+        Histogramas h = new Histogramas(imagen);
+        Image io = FiltrosEspaciales.toBin(imagen);
+        Image io2 = FiltrosEspaciales.toBin(
+                imagen,UmbralizacionAutomatica.metodoOtsu(
+                   h.getGrey()
+                )
+        );
+        
+        JFrameImage wop = new JFrameImage(imagen);
+        JFrameImage wop2 = new JFrameImage(io);
+        JFrameImage wop3 = new JFrameImage(io2);
+     //  JFrameSegmentacion frame = new JFrameSegmentacion("wp",io);
     }
     
 }
