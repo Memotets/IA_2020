@@ -40,9 +40,9 @@ public class FiltrosEspaciales {
         }
         return ImageManager.toImage(bi);
     }
-    public static Image toBin(Image io){
+    public static Image toBinOtsu(Image io){
         Image gris = FiltrosEspaciales.generarGris(io);
-        int umbral1 = metodoIterativo(new Histogramas(gris).Grey);
+        int umbral1 = UmbralizacionAutomatica.metodoOtsu(new Histogramas(gris).getGrey());
         BufferedImage bi = ImageManager.toBufferedImage(gris);
         Color color;
         for (int i=0; i< bi.getWidth(); i++ ){
@@ -260,12 +260,12 @@ public class FiltrosEspaciales {
         }
         return ImageManager.toImage(bi);
     }     
+    
     public static int val(int x){
         if (x > 255) return 255;
         else if (x<0) return 0;
         else return x;
     } 
-
     private static int flog(int r) {
         return (int) ((255*Math.log(1+r))/Math.log(256));
     }

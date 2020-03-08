@@ -6,6 +6,7 @@
 package ir.GUI.Liseners;
 
 import ir.GUI.Menu;
+import ir.GUI.Views.IntImage;
 import ir.GUI.RawView.ImageManager;
 import ir.GUI.RawView.JFrameImage;
 import java.awt.Image;
@@ -26,7 +27,7 @@ public class ButtonListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         Image imagen = ImageManager.openImage();
-        JFrameImage wop = new JFrameImage(imagen);
+        IntImage wop = new IntImage(imagen);
         this.inicio.dispose();
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
