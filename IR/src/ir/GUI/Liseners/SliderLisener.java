@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.Herramientas.Liseners;
+package ir.GUI.Liseners;
 
 /**
  *
  * @author memotets89
  */
-import ir.Herramientas.JFrameSegmentacion;
-import ir.SegmentoRGB.FiltrosEspaciales;
-import ir.SegmentoRGB.Histogramas;
+import ir.GUI.RawView.JFrameSegmentacion;
+import ir.Espacial.FiltrosEspaciales;
+import ir.Espacial.Histogramas;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Image;

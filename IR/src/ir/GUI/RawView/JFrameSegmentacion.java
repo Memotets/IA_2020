@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.Herramientas;
+package ir.GUI.RawView;
 
 /**
  *
  * @author memotets89
  */
-import ir.Herramientas.Liseners.SliderLisener;
-import ir.SegmentoRGB.Histogramas;
+import ir.GUI.Liseners.SliderLisener;
+import ir.Espacial.Histogramas;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -43,7 +43,7 @@ public class JFrameSegmentacion extends JFrame{
     }
 
     private void intComponets() {
-         setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
         this.ILabel = new JLabel(new ImageIcon(this.img));
         this.add(this.ILabel, BorderLayout.CENTER);
         

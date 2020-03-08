@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.SegmentoRGB;
+package ir.Espacial;
 
-import ir.Herramientas.ImageManager;
-import ir.Herramientas.JFrameImage;
-import static ir.SegmentoRGB.UmbralizacionAutomatica.metodoIterativo;
+import ir.GUI.RawView.ImageManager;
+import ir.GUI.RawView.JFrameImage;
+import static ir.Espacial.UmbralizacionAutomatica.metodoIterativo;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;

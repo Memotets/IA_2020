@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.Herramientas;
+package ir.GUI.RawView;
 
+import ir.GUI.RawView.ImageManager;
+import ir.GUI.RawView.JFrameImage;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;

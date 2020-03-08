@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.SegmentoRGB;
+package ir.Espacial;
 import ir.Graficar.Grafica;
-import ir.Herramientas.ImageManager;
+import ir.GUI.RawView.ImageManager;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.Color;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.Herramientas;
+package ir.GUI.RawView;
 
 
 import java.awt.Graphics2D;

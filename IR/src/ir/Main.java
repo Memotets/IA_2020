@@ -5,11 +5,12 @@
  */
 package ir;
 
-import ir.Herramientas.ImageManager;
-import ir.Herramientas.JFrameImage;
-import ir.SegmentoRGB.FiltrosEspaciales;
-import ir.SegmentoRGB.Histogramas;
-import ir.SegmentoRGB.UmbralizacionAutomatica;
+import ir.GUI.RawView.ImageManager;
+import ir.GUI.RawView.JFrameImage;
+import ir.Espacial.FiltrosEspaciales;
+import ir.Espacial.Histogramas;
+import ir.Espacial.UmbralizacionAutomatica;
+import ir.GUI.Menu;
 import java.awt.Image;
 
 
@@ -23,18 +24,19 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Image imagen = ImageManager.openImage();
-        Histogramas h = new Histogramas(imagen);
-        Image io = FiltrosEspaciales.toBin(imagen);
-        Image io2 = FiltrosEspaciales.toBin(
-                imagen,UmbralizacionAutomatica.metodoOtsu(
-                   h.getGrey()
-                )
-        );
-        
-        JFrameImage wop = new JFrameImage(imagen);
-        JFrameImage wop2 = new JFrameImage(io);
-        JFrameImage wop3 = new JFrameImage(io2);
+        Menu prueba = new Menu("Hola mundo");
+//        Image imagen = ImageManager.openImage();
+//        Histogramas h = new Histogramas(imagen);
+//        Image io = FiltrosEspaciales.toBin(imagen);
+//        Image io2 = FiltrosEspaciales.toBin(
+//                imagen,UmbralizacionAutomatica.metodoOtsu(
+//                   h.getGrey()
+//                )
+//        );
+//        
+//        JFrameImage wop = new JFrameImage(imagen);
+//        JFrameImage wop2 = new JFrameImage(io);
+//        JFrameImage wop3 = new JFrameImage(io2);
      //  JFrameSegmentacion frame = new JFrameSegmentacion("wp",io);
     }
     
