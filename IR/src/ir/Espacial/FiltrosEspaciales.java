@@ -17,6 +17,35 @@ import java.awt.image.BufferedImage;
  * @author memotets89
  */
 public class FiltrosEspaciales {
+    
+    public static Image eculizarImagen(Image io){
+        int nxm = io.getHeight(null)*io.getWidth(null);
+        Histogramas h = new Histogramas(io);
+        double[] help = h.getGrey();
+        double[] daf = new double[256];
+        int[] nt  = new int[256];
+        
+        daf[0] = (int)help[0];
+        nt[0]  = (int)Math.round((daf[0]/nxm)*255);
+        
+        for(int i = 1; i< help.length; i++){
+            daf[i] =(int)(help[i]+daf[i-1]);
+            double tmp = Math.round((daf[i]/nxm)*255);
+            nt[i]= (int) tmp;
+        }
+        BufferedImage bi = ImageManager.toBufferedImage(io);
+        Color color;
+        for (int i=0; i< bi.getWidth(); i++ ){
+            for (int j = 0 ; j<bi.getHeight(); j++){
+                color = new Color(bi.getRGB(i,j));
+                int t = color.getRed();
+                int t2 = nt[t];
+                color = new Color(t2,t2,t2);
+                bi.setRGB(i, j, color.getRGB());
+            }
+        }        
+        return ImageManager.toImage(bi);
+    }
 
     public static Image toBin(Image io, int umbral1, int umbral2){
         

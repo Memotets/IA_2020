@@ -24,9 +24,18 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Menu prueba = new Menu("Hola mundo");
-//        Image imagen = ImageManager.openImage();
-//        Histogramas h = new Histogramas(imagen);
+       // Menu prueba = new Menu("Hola mundo");
+        Image imagen = ImageManager.openImage();
+        Image w1 = FiltrosEspaciales.generarGris(imagen);
+        Histogramas h = new Histogramas(w1);
+        h.GraphGrey();
+        
+        Image w2 = FiltrosEspaciales.eculizarImagen(w1);
+        h = new Histogramas(w2);
+        h.GraphGrey();
+        JFrameImage wop = new JFrameImage(w1);
+        JFrameImage wop2 = new JFrameImage(w2);
+        
 //        Image io = FiltrosEspaciales.toBin(imagen);
 //        Image io2 = FiltrosEspaciales.toBin(
 //                imagen,UmbralizacionAutomatica.metodoOtsu(
