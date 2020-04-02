@@ -27,7 +27,7 @@ public class JFrameImage extends JFrame{
         
         this.setVisible(true);
         
-       this.setDefaultCloseOperation(JFrameImage.DISPOSE_ON_CLOSE);
+       this.setDefaultCloseOperation(JFrameImage.EXIT_ON_CLOSE);
     }
     
     public Image getImagen() {

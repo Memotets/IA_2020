@@ -9,7 +9,7 @@ package ir.GUI.RawView;
  *
  * @author memotets89
  */
-import ir.GUI.Liseners.SliderLisener;
+import ir.GUI.Liseners.Slider.SliderLisener;
 import ir.Espacial.Histogramas;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -28,7 +28,6 @@ public class JFrameSegmentacion extends JFrame{
     private JSlider u1, u2;
     private JLabel ILabel;
     private Image img;
-   // private Histogramas graph;
     private Component wop;
     
     public JFrameSegmentacion(String title, Image imagen){

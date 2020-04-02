@@ -5,13 +5,13 @@
  */
 package ir;
 
+import ir.Espacial.FiltrosEspaciales;
+import ir.Espacial.Mascaras;
+import ir.Espacial.Suavisado;
 import ir.GUI.RawView.ImageManager;
 import ir.GUI.RawView.JFrameImage;
-import ir.Espacial.FiltrosEspaciales;
-import ir.Espacial.Histogramas;
-import ir.Espacial.UmbralizacionAutomatica;
-import ir.GUI.Menu;
 import java.awt.Image;
+
 
 
 /**
@@ -24,29 +24,25 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       // Menu prueba = new Menu("Hola mundo");
-        Image imagen = ImageManager.openImage();
-        Image w1 = FiltrosEspaciales.generarGris(imagen);
-        Histogramas h = new Histogramas(w1);
-        h.GraphGrey();
+        //Menu prueba = new Menu("Hola mundo");
         
-        Image w2 = FiltrosEspaciales.eculizarImagen(w1);
-        h = new Histogramas(w2);
-        h.GraphGrey();
-        JFrameImage wop = new JFrameImage(w1);
-        JFrameImage wop2 = new JFrameImage(w2);
+        Image io = ImageManager.openImage();
+        //io = FiltrosEspaciales.generarGris(io);
+        JFrameImage jfi = new JFrameImage(io);
+        Image i1 = Mascaras.Robert(io);
+        JFrameImage jf1 = new JFrameImage(i1);
+        Image i2 = Mascaras.Prewitt(io);
+        JFrameImage jf2 = new JFrameImage(i2);
+        Image i3 = Mascaras.Sobel(io);
+        JFrameImage jf3 = new JFrameImage(i3);
+        Image i4 = Mascaras.Kirsch(io);
+        JFrameImage jf4 = new JFrameImage(i4);
         
-//        Image io = FiltrosEspaciales.toBin(imagen);
-//        Image io2 = FiltrosEspaciales.toBin(
-//                imagen,UmbralizacionAutomatica.metodoOtsu(
-//                   h.getGrey()
-//                )
-//        );
-//        
-//        JFrameImage wop = new JFrameImage(imagen);
-//        JFrameImage wop2 = new JFrameImage(io);
-//        JFrameImage wop3 = new JFrameImage(io2);
-     //  JFrameSegmentacion frame = new JFrameSegmentacion("wp",io);
+        ImageManager.GuardarImagen(i1, "Robert");
+        ImageManager.GuardarImagen(i2, "Prewitt");
+        ImageManager.GuardarImagen(i3, "Sobel");
+        ImageManager.GuardarImagen(i4, "Kirsch");
+        System.out.println("Listo");
     }
     
 }

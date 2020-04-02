@@ -77,6 +77,15 @@ public class ImageManager {
         
         return bi;
     }
+    
+    public static void GuardarImagen (Image io, String fileName){
+        		// Escribimos la imagen en el archivo.
+		try {
+			ImageIO.write(toBufferedImage(io), "jpg", new File(fileName+".jpg"));
+		} catch (IOException e) {
+			System.out.println("Error de escritura");
+		}
+    }
 
     
 }

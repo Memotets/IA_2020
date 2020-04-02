@@ -46,7 +46,6 @@ public class FiltrosEspaciales {
         }        
         return ImageManager.toImage(bi);
     }
-
     public static Image toBin(Image io, int umbral1, int umbral2){
         
         if (umbral1 < umbral2 ){
@@ -116,9 +115,9 @@ public class FiltrosEspaciales {
                 int g = color.getGreen();
                 int b = color.getBlue();
                 if (max!=min){
-                    int nr = val((int) ((255/(max-min))*(r-min)));
-                    int ng = val((int) ((255/(max-min))*(g-min)));
-                    int nb = val((int) ((255/(max-min))*(b-min)));
+                    int nr = val(((r-min)*255)/(max-min));
+                    int ng = val(((g-min)*255)/(max-min));
+                    int nb = val(((b-min)*255)/(max-min));
 
                     bi.setRGB(i, j, new Color(nr,ng,nb).getRGB());
                 }else{
@@ -158,7 +157,7 @@ public class FiltrosEspaciales {
                 int r  = color.getRed();
                 int g = color.getGreen();
                 int b = color.getBlue();
-             //((255/(max-min))*(r-min))
+                
                 int nr = val(flog(r));
                 int ng = val(flog(g));
                 int nb = val(flog(b));
@@ -169,7 +168,7 @@ public class FiltrosEspaciales {
             return ImageManager.toImage(bi);
     }
     public static Image LnAlpha(Image io,int x){
-        Image a = FiltrosEspaciales.generarLuz(io, x);
+        Image a = FiltrosEspaciales.generarLuz(io, -x);
         BufferedImage bi = ImageManager.toBufferedImage(a);
         Color color;
         for (int i=0; i< bi.getWidth(); i++ ){

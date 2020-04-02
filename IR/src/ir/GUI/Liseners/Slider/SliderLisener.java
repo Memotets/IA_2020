@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ir.GUI.Liseners;
+package ir.GUI.Liseners.Slider;
 
 /**
  *
@@ -13,7 +13,6 @@ import ir.GUI.RawView.JFrameSegmentacion;
 import ir.Espacial.FiltrosEspaciales;
 import ir.Espacial.Histogramas;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
