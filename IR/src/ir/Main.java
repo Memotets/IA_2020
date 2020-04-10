@@ -29,19 +29,39 @@ public class Main {
         Image io = ImageManager.openImage();
         //io = FiltrosEspaciales.generarGris(io);
         JFrameImage jfi = new JFrameImage(io);
-        Image i1 = Mascaras.Robert(io);
-        JFrameImage jf1 = new JFrameImage(i1);
-        Image i2 = Mascaras.Prewitt(io);
-        JFrameImage jf2 = new JFrameImage(i2);
-        Image i3 = Mascaras.Sobel(io);
-        JFrameImage jf3 = new JFrameImage(i3);
-        Image i4 = Mascaras.Kirsch(io);
-        JFrameImage jf4 = new JFrameImage(i4);
-        
-        ImageManager.GuardarImagen(i1, "Robert");
-        ImageManager.GuardarImagen(i2, "Prewitt");
-        ImageManager.GuardarImagen(i3, "Sobel");
-        ImageManager.GuardarImagen(i4, "Kirsch");
+        int mascaras[][][] = {
+            {
+                {0,-1,0},
+                {-1,5,-1},
+                {0,-1,0}
+            },//Enfoque
+            {
+                {1,1,1},
+                {1,1,1},
+                {1,1,1}
+            },//Desenfoque
+            {
+                {0,0,0},
+                {-1,1,0},
+                {0,0,0}
+            },//Borde
+            {
+                {0,1,0},
+                {1,-4,1},
+                {0,1,0}
+            },//Bordes
+            {
+                {-2,-1,0},
+                {-1,1,1},
+                {0,1,2}
+            }//Repujado
+        };
+        for (int i =0; i<mascaras.length;i++){
+            Image i1;
+            if (i!=1) i1 = Suavisado.convolucion(io, mascaras[i], 1, 0);
+            else i1 = Suavisado.convolucion(io, mascaras[i], 9, 0);
+            ImageManager.GuardarImagen(i1, "Imagen_"+i);
+        }
         System.out.println("Listo");
     }
     
