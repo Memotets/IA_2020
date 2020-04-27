@@ -8,9 +8,12 @@ package ir;
 import ir.Espacial.FiltrosEspaciales;
 import ir.Espacial.Mascaras;
 import ir.Espacial.Suavisado;
+import ir.FFT.Gestor;
 import ir.GUI.RawView.ImageManager;
 import ir.GUI.RawView.JFrameImage;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 
 
@@ -27,41 +30,24 @@ public class Main {
         //Menu prueba = new Menu("Hola mundo");
         
         Image io = ImageManager.openImage();
+        //generar imagen escalada en grises
+        int Escala = 512;
+        io = ImageManager.toBufferedImage(io).getScaledInstance(Escala,Escala, BufferedImage.TYPE_INT_BGR);
         //io = FiltrosEspaciales.generarGris(io);
+        
         JFrameImage jfi = new JFrameImage(io);
-        int mascaras[][][] = {
-            {
-                {0,-1,0},
-                {-1,5,-1},
-                {0,-1,0}
-            },//Enfoque
-            {
-                {1,1,1},
-                {1,1,1},
-                {1,1,1}
-            },//Desenfoque
-            {
-                {0,0,0},
-                {-1,1,0},
-                {0,0,0}
-            },//Borde
-            {
-                {0,1,0},
-                {1,-4,1},
-                {0,1,0}
-            },//Bordes
-            {
-                {-2,-1,0},
-                {-1,1,1},
-                {0,1,2}
-            }//Repujado
-        };
-        for (int i =0; i<mascaras.length;i++){
-            Image i1;
-            if (i!=1) i1 = Suavisado.convolucion(io, mascaras[i], 1, 0);
-            else i1 = Suavisado.convolucion(io, mascaras[i], 9, 0);
-            ImageManager.GuardarImagen(i1, "Imagen_"+i);
-        }
+        
+        Gestor gio = new Gestor(ImageManager.toBufferedImage(io));
+        
+        BufferedImage frec =gio.obtenerImagenFrecuencias(true);
+        Image freQ = ImageManager.toImage(frec);
+        JFrameImage jfF = new JFrameImage(freQ);
+        
+        Random ran= new Random();
+        int aux = ran.nextInt();
+        //guardar imagenes
+        ImageManager.GuardarImagen(io, "original"+aux);
+        ImageManager.GuardarImagen(freQ, "espectro"+aux);
         System.out.println("Listo");
     }
     
