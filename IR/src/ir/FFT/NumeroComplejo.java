@@ -9,7 +9,7 @@ package ir.FFT;
  *
  * @author memotets89
  */
-class NumeroComplejo {
+public class NumeroComplejo {
     private  double real;
     private  double imaginaria;
 
