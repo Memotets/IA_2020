@@ -5,9 +5,11 @@
  */
 package ir;
 
-import ir.Espacial.FiltrosEspaciales;
-import ir.FFT.Filtros.FiltroPasaAltas;
-import ir.FFT.Filtros.FiltroPasaBajas;
+
+import ir.FFT.Filtros.FiltroButterWorth;
+//import ir.FFT.Filtros.FiltroPasaAltas;
+//import ir.FFT.Filtros.FiltroPasaBajas;
+
 import ir.FFT.Gestor;
 import ir.FFT.NumeroComplejo;
 import ir.GUI.RawView.ImageManager;
@@ -35,7 +37,7 @@ public class Main {
         //generar imagen escalada en grises
         int Escala = 512;
         io = ImageManager.toBufferedImage(io).getScaledInstance(Escala,Escala, BufferedImage.TYPE_INT_BGR);
-        io = FiltrosEspaciales.generarGris(io);
+        //io = FiltrosEspaciales.generarGris(io);
         JFrameImage jfi = new JFrameImage(io);
         
         Gestor gio = new Gestor(ImageManager.toBufferedImage(io));
@@ -43,18 +45,20 @@ public class Main {
         Image freQ = ImageManager.toImage(frec);
         JFrameImage jfF = new JFrameImage(freQ);
         
-        FiltroPasaAltas fpa= new FiltroPasaAltas(35, new Dimension(Escala,Escala));
+         
+        //FiltroPasaBajas fpa = new FiltroPasaBajas(100, new Dimension(Escala,Escala));
+        FiltroButterWorth fpa= new FiltroButterWorth(1, 256, new Dimension(Escala,Escala));
         fpa.crearFiltro();
         NumeroComplejo [][] filtro = fpa.getFiltroEspacial();
         JFrameImage  frameFil = new JFrameImage(fpa.getImagen());
-        gio.aplicarFiltro(filtro);
         
+        gio.aplicarFiltro(filtro);
         BufferedImage imagenEspacial = gio.obtenerImagenEspacial();
         Image finale = ImageManager.toImage(imagenEspacial);
         JFrameImage  frame = new  JFrameImage (finale);
         
         
-        //--intento de conseguir el expectro filtrado
+//        --intento de conseguir el expectro filtrado
         
         Gestor gTry = new Gestor(ImageManager.toBufferedImage(finale));
         BufferedImage fTry =gTry.obtenerImagenFrecuencias(true);
@@ -64,10 +68,10 @@ public class Main {
         Random ran= new Random();
         int aux = ran.nextInt();
         //guardar imagenes
-        ImageManager.GuardarImagen(io, "original"+aux);
-        ImageManager.GuardarImagen(freQ, "espectro"+aux);
-        ImageManager.GuardarImagen(finale, "Imagen filtrada"+aux);
-        ImageManager.GuardarImagen(FQTry, "espectro filtrado"+aux);
+//        ImageManager.GuardarImagen(io, "original"+aux);
+//        ImageManager.GuardarImagen(freQ, "espectro"+aux);
+//        ImageManager.GuardarImagen(finale, "Imagen filtrada"+aux);
+       // ImageManager.GuardarImagen(FQTry, "espectro filtrado"+aux);
         System.out.println("Listo");
     }
     
