@@ -47,31 +47,27 @@ public class Main {
         
          
         //FiltroPasaBajas fpa = new FiltroPasaBajas(100, new Dimension(Escala,Escala));
-        FiltroButterWorth fpa= new FiltroButterWorth(1, 256, new Dimension(Escala,Escala));
+        FiltroButterWorth fpa= new FiltroButterWorth(15, 100, new Dimension(Escala,Escala));
         fpa.crearFiltro();
         NumeroComplejo [][] filtro = fpa.getFiltroEspacial();
         JFrameImage  frameFil = new JFrameImage(fpa.getImagen());
         
         gio.aplicarFiltro(filtro);
-        BufferedImage imagenEspacial = gio.obtenerImagenEspacial();
-        Image finale = ImageManager.toImage(imagenEspacial);
+        Image finale = ImageManager.toImage(gio.obtenerImagenEspacial());
         JFrameImage  frame = new  JFrameImage (finale);
         
+        Image FQTry = ImageManager.toImage(gio.obtenerImagenFrecuencias(true));
+         JFrameImage wop = new JFrameImage(FQTry);
         
-//        --intento de conseguir el expectro filtrado
-        
-        Gestor gTry = new Gestor(ImageManager.toBufferedImage(finale));
-        BufferedImage fTry =gTry.obtenerImagenFrecuencias(true);
-        Image FQTry = ImageManager.toImage(fTry);
-        JFrameImage JFTry = new JFrameImage(FQTry);
-        
+
         Random ran= new Random();
         int aux = ran.nextInt();
         //guardar imagenes
-//        ImageManager.GuardarImagen(io, "original"+aux);
-//        ImageManager.GuardarImagen(freQ, "espectro"+aux);
-//        ImageManager.GuardarImagen(finale, "Imagen filtrada"+aux);
-       // ImageManager.GuardarImagen(FQTry, "espectro filtrado"+aux);
+        ImageManager.GuardarImagen(io, "original"+aux);
+        ImageManager.GuardarImagen(freQ, "espectro"+aux);
+        ImageManager.GuardarImagen(fpa.getImagen(), "Filtro"+aux);
+        ImageManager.GuardarImagen(finale, "Imagen filtrada"+aux);
+        ImageManager.GuardarImagen(FQTry, "espectro filtrado"+aux);
         System.out.println("Listo");
     }
     

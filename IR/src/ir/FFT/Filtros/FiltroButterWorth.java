@@ -37,12 +37,14 @@ public class FiltroButterWorth extends FiltroFrecuencia{
             for(int j=0; j < tamanoImagen;j++){            
                 int u = i-center;
                 int v = j-center;
-                double Duv = Math.sqrt(Math.pow(u,2)+Math.pow(v, 2));
-                double valor = 1/(1+(Math.pow(Duv/radio,2*orden))); // Bw
-                //double valor = Math.exp(-Math.pow(Duv, 2)/Math.pow(radio, 2)); //Gauss
+                double Distance = Math.sqrt(Math.pow(u,2)+Math.pow(v, 2));
+                double FI = Math.pow((Distance/radio),2*orden);
+                
+                double valor = 1/Math.sqrt((1+FI)); // Bw
+                //double valor = Math.exp(-Math.pow(Distance, 2)/Math.pow(radio, 2)); //Gauss
                 getFiltroEspacial()[i][j] = new NumeroComplejo(valor,valor);
                
-            //double valor = Math.exp(-Math.pow(Duv, 2)/Math.pow(radio, 2));
+            //double valor = Math.exp(-Math.pow(Distance, 2)/Math.pow(radio, 2));
                      
             }
         }    

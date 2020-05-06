@@ -5,7 +5,7 @@
             <url>src/ir/Main.java</url>
             <bookmark id="1">
                 <name/>
-                <line>45</line>
+                <line>49</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,11 +13,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/memotets89/Escritorio/Work/IPN/Semestre6/ImageReconigtion/IA_2020/IR/src/ir/FFT/Gestor.java</file>
-            <file>file:/home/memotets89/Escritorio/Work/IPN/Semestre6/ImageReconigtion/IA_2020/IR/src/ir/FFT/Filtros/FiltroPasaBajas.java</file>
-            <file>file:/home/memotets89/Escritorio/Work/IPN/Semestre6/ImageReconigtion/IA_2020/IR/src/ir/FFT/NumeroComplejo.java</file>
             <file>file:/home/memotets89/Escritorio/Work/IPN/Semestre6/ImageReconigtion/IA_2020/IR/src/ir/Main.java</file>
-            <file>file:/home/memotets89/Escritorio/Work/IPN/Semestre6/ImageReconigtion/IA_2020/IR/src/ir/FFT/Filtros/FiltroFrecuencia.java</file>
-            <file>file:/home/memotets89/Escritorio/Work/IPN/Semestre6/ImageReconigtion/IA_2020/IR/src/ir/FFT/Filtros/FiltroPasaAltas.java</file>
         </group>
     </open-files>
 </project-private>
