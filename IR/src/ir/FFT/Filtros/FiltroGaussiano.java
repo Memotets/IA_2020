@@ -13,38 +13,35 @@ import java.awt.Image;
  *
  * @author memotets89
  */
-public class FiltroButterWorth extends FiltroFrecuencia{
-    
-    private int orden;
+public class FiltroGaussiano extends FiltroFrecuencia{
+     private int orden;
     private int radio;
     private Dimension dim;
     private Image imagen;
-    private boolean PasaAltas;
-    public FiltroButterWorth(int n, int r, Dimension dim, boolean PasaAltas) {
+    private boolean pasaAltas;
+    public FiltroGaussiano(int r, Dimension dim, boolean pasaAltas) {
         super(dim.width,dim.height);
-        this.orden = n;
         this.radio = r;
         this.dim = dim;
+        this.pasaAltas = pasaAltas;
+        
         this.imagen = null;
-        this.PasaAltas = PasaAltas;
     }
     
     @Override
     public void crearFiltro() {
         int tamanoImagen = (int)dim.getWidth();
         int center = (tamanoImagen/2);
-        int n2 = 2*orden;
+        double valor;
         for(int i=0; i < tamanoImagen;i++){
             for(int j=0; j < tamanoImagen;j++){            
                 int u = i-center;
                 int v = j-center;
-                double Distance = Math.sqrt(Math.pow(u,2)+Math.pow(v, 2));
-                double FI;
-                 if(!PasaAltas) FI = Math.pow((Distance/radio),2*orden);
-                 else FI = Math.pow((radio/Distance),2*orden);
-                double valor = 1/Math.sqrt((1+FI));
-               
-                getFiltroEspacial()[i][j] = new NumeroComplejo(valor,valor);
+                double DistanceC = Math.pow(u,2)+Math.pow(v, 2);
+                if(!this.pasaAltas) valor = Math.exp(-DistanceC/(2*radio*radio)); //Gauss
+                else valor = 1-Math.exp(- DistanceC/(2*radio*radio));
+
+                getFiltroEspacial()[i][j] = new NumeroComplejo(valor,1);
                
             //double valor = Math.exp(-Math.pow(Distance, 2)/Math.pow(radio, 2));
                      
@@ -64,5 +61,4 @@ public class FiltroButterWorth extends FiltroFrecuencia{
     public Image getImagen() {
         return imagen;
     }
-    
 }
